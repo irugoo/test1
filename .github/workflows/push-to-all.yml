@@ -23,6 +23,7 @@ jobs:
           REPO_URLS: |
             https://github.com/irugoo/traveler-connect-hub.git
             https://github.com/irugoo/traveler-connect-hub-04.git
+            https://github.com/irugoo/test1.git
             # Add more repos here
         run: |
           for REPO_URL in $REPO_URLS; do
