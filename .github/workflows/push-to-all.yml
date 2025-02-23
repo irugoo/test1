@@ -1,0 +1,33 @@
+name: Push to All Lovable Repos
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Central Repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SYNC_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Push to All Lovable Repos
+        env:
+          REPO_URLS: |
+            https://github.com/irugoo/traveler-connect-hub.git
+            https://github.com/irugoo/traveler-connect-hub-04.git
+            # Add more repos here
+        run: |
+          for REPO_URL in $REPO_URLS; do
+            git remote add target "$REPO_URL"
+            git push target main:main --force
+            git remote remove target
+            sleep 5 # Avoid rate limits
+          done
