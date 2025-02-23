@@ -26,6 +26,7 @@ jobs:
             https://github.com/irugoo/traveler-connect-hub.git
             https://github.com/irugoo/traveler-connect-hub-04.git
             https://github.com/irugoo/test1.git
+            https://github.com/irugoo/irugootravel1.git
         run: |
           for REPO_URL in $REPO_URLS; do
             echo "Syncing to $REPO_URL..."
